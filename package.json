@@ -1,0 +1,65 @@
+{
+  "name": "dataset-user-interactions-mimic",
+  "version": "0.0.1",
+  "license": "ODC-BY 1.0",
+  "description": "A dataset from mimic system",
+  "repository": {
+    "url": "https://git.autodesk.com/breslas/dataset-user-interactions-mimic"
+  },
+  "author": {
+    "name": "Simon Breslav",
+    "url": "simon.breslav@autodesk.com"
+  },
+  "dependencies": {
+    "mongoose": "^3.8.16",
+    "tungus": "0.0.2",
+    "adm-zip": "^0.4.4",
+    "async": "^0.9.0"
+  },
+  "scripts": {
+    "start": "node db_import.js"
+  },
+  "uber-tagger":{
+    "main-table": 0,
+    "tables":[
+     {"id": "dataset-user-interactions-mimic",
+       "name": "18 Hour Results",
+       "source": "data\\surveyData_experimentAnswersProcessed_micallef-replication.json",
+       "schema":  "schema.js" 
+      }
+    ],
+    "db": {
+      "current": "tingo",
+      "mongo": {
+        "host": "localhost",
+        "port": 27017,
+        "db": "dataset-user-interactions-mimic",
+        "opts": {
+          "auto_reconnect": true,
+          "safe": true
+        }
+      },
+      "tingo": {
+        "path": "db_data"
+      }
+    },
+    "samplesPerSecond": 2,
+    "plot_resampled_data": true,
+    "default_start_time": "January 1, 2014 00:00:00",
+    "time-scale": "second",
+    "schema": "schema.js",
+    "views": [
+      { "name": "Heatmap",
+        "type": "heatmap",
+        "intensity": 0.5,
+        "context-data": {"url": "data/context/index.html?question={0}&condition={1}", "args": ["question_id", "condition"]},
+        "context-width": 1000,
+        "context-height": 1000,
+        "data-paths": {"mouse-moves":{"field": "mouse_moves",
+                                      "x":"x",
+                                      "y":"y",
+                                      "time":"time"}}      
+      }
+    ]
+  }
+}

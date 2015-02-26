@@ -1,0 +1,41 @@
+[
+  {
+    "base_template": "question_v2.html", 
+    "slug": "micallef_page1", 
+    "template": "questions_micallef/page1.html", 
+    "correct_answer": {
+      "answer": "Yes"
+    }, 
+    "data": "{}", 
+    "id": 1
+  }, 
+  {
+    "base_template": "question_v2.html", 
+    "slug": "micallef_page2", 
+    "template": "questions_micallef/page2.html", 
+    "correct_answer": {
+      "a1": "8", 
+      "a2": "103"
+    }, 
+    "data": "{}", 
+    "id": 2
+  }, 
+  {
+    "base_template": "question_v2.html", 
+    "slug": "micallef_page3", 
+    "template": "questions_micallef/page3.html", 
+    "correct_answer": {
+      "answer": "3"
+    }, 
+    "data": "{}", 
+    "id": 3
+  }, 
+  {
+    "base_template": "question_v2.html", 
+    "slug": "micallef_page4", 
+    "template": "questions_micallef/page4.html", 
+    "correct_answer": {}, 
+    "data": "{}", 
+    "id": 4
+  }
+]

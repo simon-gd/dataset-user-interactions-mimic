@@ -1,0 +1,264 @@
+{
+  "name": "dataset-user-interactions-mimic",
+  "title": "A dataset from mimic system",
+  "homepage": "",
+  "version": "0.0.1",
+  "license": "ODC-BY 1.0",
+  "resources": [
+    {
+      "name": "surveyData_experimentAnswersProcessed_micallef-replication",
+      "path": "data\\surveyData_experimentAnswersProcessed_micallef-replication.json",
+      "format": "json",
+      "mediatype": "text/json",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "user",
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "confidence",
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "user_events",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "experiment.survey_condition",
+            "title": "condition",
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "time",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "question.id",
+            "title": "Page",
+            "type": "integer"
+          },
+          {
+            "name": "answer.a1",
+            "title": "a1",
+            "type": "integer",
+            "description": ""
+          },
+          { "name": "answer.a2",
+            "title": "a2",
+            "type": "integer",
+            "description": ""
+          },
+          {
+            "name": "answer.a4",
+            "title": "a4",
+            "type": "integer",
+            "description": ""
+          },
+           {
+            "name": "answer.a3_comments",
+            "title": "a3 comments",
+            "type": "string",
+            "description": ""
+          },
+           {
+            "name": "answer.other_comments",
+            "title": "comments",
+            "type": "string",
+            "description": ""
+          },
+          
+           {
+            "name": "window_w",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "window_h",
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "primaryKey": ["id"],
+        "externalFileFields": [{
+          "resource": "user_events",
+          "fields":[
+          {
+            "name": "mouse_move",
+            "type": "time-series",
+            "aggrigate-function": "sparkline('y')",
+            "plot-function": "line('x', 'y')",
+            "reference": {
+              "field": "mouse_move_event",
+              "time-series":{
+                 "time": "time",
+                 "type": "point",
+                 "object": ["x","y", "e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "mouse_move_event",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "mouse_move_event",
+              "time-series":{
+                 "time": "time",
+                 "type": "point",
+                 "object": ["x","y","e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "mouse_click",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "mouse_click_event",
+              "time-series":{
+                 "time": "time",
+                 "type": "point",
+                 "object": ["x","y","e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "keydown_event",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "keydown_event",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": ["key", "e.which", "e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "scroll_event",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "scroll_event",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": ["dx", "dy"]
+              }
+            }
+          },
+          {
+            "name": "reseize",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "misc_event",
+              "filter": "object.type=='resize'",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": ["x", "y"]
+              }
+            }
+          },
+          {
+            "name": "focusin",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "misc_event",
+              "filter": "object.type=='focus' || object.type=='focusin'",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": ["e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "focusout",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "misc_event",
+              "filter": "object.type=='blur' || object.type=='focusout'",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": ["e.target.id"]
+              }
+            }
+          },
+          {
+            "name": "mousewheel",
+            "type": "time-series",
+            "aggrigate-function": "count()",
+            "plot-function": "density()",
+            "reference": {
+              "resource": "user_events",
+              "field": "misc_event",
+              "filter": "object.type=='mousewheel'",
+              "time-series":{
+                 "time": "time",
+                 "type": "object",
+                 "object": []
+              }
+            }
+          }
+        ]
+        }
+        ]
+      }
+    }
+  ],
+  "views": [
+    { "name": "Heatmap",
+      "type": "heatmap",
+      "observation-data": "surveyData_experimentAnswersProcessed_micallef-replication",
+      "data-paths": {"mouse-moves":{"url_field": "user_events", 
+                                    "objects": "mouse_move_event",
+                                    "x":"x",
+                                    "y":"y",
+                                    "time":"time"}},
+      "filters": [
+          {"name":"Page 2", 
+           "hide_column": ["answer.a3_comments", "answer.other_comments", "answer.a4"],
+           "filter": "function(a) { return a.question.id==2; }" 
+          },
+          {"name":"Page 4", 
+           "hide_column": ["answer.a3_comments", "answer.other_comments", "answer.a4"],
+           "filter": "function(a) { return a.question.id==4; }" 
+          }
+      ],
+      "context-data": {"url": "data/context/index.html?question={0}&condition={1}", "args": ["question.id", "experiment.survey_condition"]}
+    }
+  ],
+  "description": "A dataset from mimic system",
+  "repository": "https://git.autodesk.com/breslas/dataset-user-interactions-mimic"
+}
