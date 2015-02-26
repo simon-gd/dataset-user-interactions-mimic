@@ -6,7 +6,7 @@ A dataset with user micro-interactions used in this paper:
 
 The dataset consists of data from a replication of a recent crowd-sourcing experiment to better understand why participants consistently perform poorly in answering a canonical conditional probability question called the Mammography Problem.
 
-![Screenshot](https://git.autodesk.com/breslas/dataset-user-interactions-mimic/raw/master/images/screenshot2.png)
+![Screenshot](https://github.com/sbreslav/dataset-user-interactions-mimic/raw/master/images/screenshot2.png)
 
 ## Building Dataset
 To populate a [MongoDB](http://www.mongodb.org/) or [TingoDB](http://www.tingodb.com/) with the data, follow these steps:
