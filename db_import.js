@@ -4,14 +4,11 @@ var fs = require('fs');
 var AdmZip = require('adm-zip');
 var cfg = JSON.parse(fs.readFileSync("./package.json"));
 var async = require("async");
-var inputDatapath = cfg.main;
+var inputDatapath = __dirname+"/data/surveyData_experimentAnswersProcessed_micallef-replication.json";
 
 //console.log("mongo dirver path", global.MONGOOSE_DRIVER_PATH);
 
-if(cfg.db.current == "tingo"){
-  require('tungus');  
-}
-
+require('tungus');  
 var mongoose = require('mongoose');
 
 console.log('Running mongoose version %s', mongoose.version);
@@ -20,8 +17,7 @@ var Record = require("./schema.js")(mongoose).model;//mongoose.model('Record');
 /**
  * Connect to the local db file
  */
-var dbString = (cfg.db.current == "tingo") ? 'tingodb://'+__dirname+'/'+cfg.db.tingo.path 
-                                           : 'mongodb://'+ cfg.db.mongo.host +'/'+cfg.db.mongo.db; 
+var dbString = 'tingodb://'+__dirname+'/db_data'; 
 
 mongoose.connect(dbString, function (err) {
   // if we failed to connect, abort
@@ -61,8 +57,9 @@ function processExternalSeries(externalData, name, args, typeFilter, typeFilter2
       for (var key in args) {
         try{
           var mykey = args[key];
-          var stringCall = "var p = dataPt."+mykey;
-          eval(stringCall);
+          //var stringCall = "var p = dataPt."+mykey;
+          //eval(stringCall);
+          var p = dataPt[mykey];
           if(p){
             outputSeries[key].push(p);  
           }else{
