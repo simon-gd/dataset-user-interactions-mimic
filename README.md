@@ -14,3 +14,4 @@ The dataset consists of data from a replication of a recent crowd-sourcing exper
 1. `npm install`
 2. for development: `gulp`
 3. for production `npm start`
+4. Enjoy
