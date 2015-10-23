@@ -110,7 +110,7 @@
              "display-dtype": "int32",
              "time-dtype": "int32",
              "time-scale": "ms",
-             "time-path": "Mousewheel.time",
+             "time-path": "mousewheel.time",
              "series-dtype": "int32",
              "series-type": "event-simple",
              "series-path": "mousewheel.time", 
