@@ -3,7 +3,7 @@
             {"id":"user", "name":"User", "dtype": "uint32"}, 
             {"id":"condition", "name":"Condition", "dtype": "uint8"}, 
             {"id":"time", "name":"Time", "dtype": "float64"}, 
-            {"id":"question_id", "name":"Time", "dtype": "uint16"},
+            {"id":"question_id", "name":"Question", "dtype": "uint16"},
             {"id":"answer_1", "name":"a1", "dtype": "int32"},
             {"id":"answer_2", "name":"a2", "dtype": "int32"}, 
             {"id":"answer_4", "name":"a4", "dtype": "float32"}, 
